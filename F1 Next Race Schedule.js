@@ -358,6 +358,10 @@ function renderBody(listWidget, sessionData, options) {
             cellText.font = (row === "title")
                 ? new Font(...options.font.title)
                 : new Font(...options.font.body);
+            
+            if (row === "title") {
+                cellText.textColor = new Color("#F5F5F5");
+            }
 
             // Gray out past sessions
             cellText.textOpacity = getTextOpacity(sessionData[column].raw);
