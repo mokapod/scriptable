@@ -8,15 +8,15 @@ const config = {
   
   // Display Settings
   maxRaces: 3,
-  spacingBetweenRaces: 13,
+  spacingBetweenRaces: 14,
   flagSize: 30,
   raceNameSize: 10,
   dateSize: 11,
   warningSize: 12,
   padding: {
-    widget: [13, 12, 0, 15], // top, right, bottom, left
+    widget: [14, 12, 0, 12], // top, right, bottom, left
     raceName: [0, 3, 0, 0],
-    dateTime: [2.5, 13, 2.5, 8]
+    dateTime: [2.1, 11, 2.1, 8]
   },
   
   // Font Settings
@@ -34,7 +34,7 @@ const config = {
                 locations: [0, 0.3, 1],
                 colors: [
                     Color.clear(),
-                    new Color("#808080", 0.25),
+                    new Color("#808080", 0.3),
                     Color.clear()
                 ],
                 startPoint: new Point(0, 0.5),
@@ -43,18 +43,18 @@ const config = {
         },
         date: {
             gradient: {
-                locations: [0, 0.025, 0.5, 0.8, 1], // Added middle point and mirrored points
+                locations: [0, 0.03, 0.5, 0.97, 1], // Added middle point and mirrored points
                 colors: [
                     new Color("#E8002D", 0.03),       // Left fade start
-                    new Color("#E8002D", 0.75),             // Left solid
-                    new Color("#E8002D", 0.8),        // Middle (most transparent)
-                    new Color("#E8002D", 0.8),             // Right solid
-                    new Color("#FF335C", 1)        // Right fade end
+                    new Color("#E8002D", 0.9),             // Left solid
+                    new Color("#E8002D", 0.9),        // Middle (most transparent)
+                    new Color("#E8002D", 1),             // Right solid
+                    new Color("#E8002D", 0.03)        // Right fade end
                 ],
                 startPoint: new Point(0, 0.5),
                 endPoint: new Point(1, 0.5)
             },
-            cornerRadius: 2
+            cornerRadius: 0
         }
     },
     text: {
