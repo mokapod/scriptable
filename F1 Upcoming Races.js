@@ -14,7 +14,7 @@ const config = {
   dateSize: 11,
   warningSize: 12,
   padding: {
-    widget: [13, 12, 0, 14], // top, right, bottom, left
+    widget: [13, 12, 0, 16], // top, right, bottom, left
     raceName: [0, 1, 0, 0],
     dateTime: [2.2, 9, 2.2, 8]
   },
@@ -43,11 +43,13 @@ const config = {
         },
         date: {
             gradient: {
-                locations: [0, 0.025, 1],
+                locations: [0, 0.025, 0.5, 0.975, 1], // Added middle point and mirrored points
                 colors: [
-                    new Color("#E8002D", 0.08),
-                    new Color("#E8002D"),
-                    new Color("#E8002D", 0.03)
+                    new Color("#E8002D", 0.08),       // Left fade start
+                    new Color("#E8002D", 1),             // Left solid
+                    new Color("#E8002D", 0.9),        // Middle (most transparent)
+                    new Color("#E8002D", 0.9),             // Right solid
+                    new Color("#E8002D", 0.03)        // Right fade end
                 ],
                 startPoint: new Point(0, 0.5),
                 endPoint: new Point(1, 0.5)
@@ -57,7 +59,7 @@ const config = {
     },
     text: {
       raceName: "#ffffff",
-      dateTime: "#ffffff",
+      dateTime: "#F5F5F5",
       warning: "#ffcc00"
     },
     error: {
