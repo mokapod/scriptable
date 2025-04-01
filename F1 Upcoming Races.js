@@ -47,7 +47,7 @@ const config = {
                 colors: [
                     new Color("#E8002D", 0.03),       // Left fade start
                     new Color("#E8002D", 0.9),             // Left solid
-                    new Color("#E8002D", 0.9),        // Middle (most transparent)
+                    new Color("#E8002D", 0.7),        // Middle (most transparent)
                     new Color("#E8002D", 1),             // Right solid
                     new Color("#E8002D", 0.03)        // Right fade end
                 ],
