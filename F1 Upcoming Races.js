@@ -14,9 +14,9 @@ const config = {
   dateSize: 11,
   warningSize: 12,
   padding: {
-    widget: [15, 12, 0, 8], // top, right, bottom, left
-    raceName: [0, 2, 0, 0],
-    dateTime: [2.2, 10, 2.2, 8]
+    widget: [13, 12, 0, 14], // top, right, bottom, left
+    raceName: [0, 1, 0, 0],
+    dateTime: [2.2, 9, 2.2, 8]
   },
   
   // Font Settings
@@ -34,7 +34,7 @@ const config = {
                 locations: [0, 0.3, 1],
                 colors: [
                     Color.clear(),
-                    new Color("#808080", 0.2),
+                    new Color("#808080", 0.25),
                     Color.clear()
                 ],
                 startPoint: new Point(0, 0.5),
@@ -43,7 +43,7 @@ const config = {
         },
         date: {
             gradient: {
-                locations: [0, 0.02, 0.95],
+                locations: [0, 0.025, 1],
                 colors: [
                     new Color("#E8002D", 0.08),
                     new Color("#E8002D"),
