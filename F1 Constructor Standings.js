@@ -28,10 +28,20 @@ const config = {
     otherSize: 9        // Font size for positions 4+
   },
   
-  // Color Settings
+  // Updated Color Settings with group styling
   colors: {
-    top3Text: "#ffffff",    // White for positions 1-3
-    otherText: "#D3D3D3",   // Light gray for positions 4+
+    groups: {
+      top3: {
+        position: "#F5F5F5",
+        name: "#E6E6E6",
+        points: "#C0C0C0"
+      },
+      other: {
+        position: "#F5F5F5",
+        name: "#E6E6E6",
+        points: "#C0C0C0"
+      }
+    },
     teamColors: {
       "mercedes": "#00D2BE",
       "red_bull": "#3671C6",
@@ -54,7 +64,6 @@ const config = {
   // Gradient Settings
   gradient: {
     locations: [0.001, 0.04, 1],
-    //locations = [0, 0.95, 0.98];
     opacities: [0.08, 1, 0.03],
     startPoint: { x: 0, y: 0.5 },
     endPoint: { x: 1, y: 0.5 }
@@ -141,6 +150,7 @@ function createTeamGradient(teamId) {
 function createConstructorRow(widget, constructor) {
   const teamId = constructor.Constructor.constructorId.toLowerCase();
   const isTop3 = parseInt(constructor.position) <= 3;
+  const groupConfig = isTop3 ? config.colors.groups.top3 : config.colors.groups.other;
   
   const rowStack = widget.addStack();
   rowStack.layoutHorizontally();
@@ -155,31 +165,28 @@ function createConstructorRow(widget, constructor) {
   const positionStack = rowStack.addStack();
   positionStack.size = new Size(18, 0);
   const positionText = positionStack.addText(constructor.position);
+  positionText.textColor = new Color(groupConfig.position);
   
   // Constructor Name
   const constructorText = rowStack.addText(constructor.Constructor.name);
   constructorText.lineLimit = 1;
   constructorText.minimumScaleFactor = 1;
+  constructorText.textColor = new Color(groupConfig.name);
 
   // Points
   rowStack.addSpacer();
   const pointsText = rowStack.addText(constructor.points);
+  pointsText.textColor = new Color(groupConfig.points);
 
-  // Set styling based on position
+  // Set font based on position
   const font = loadFont(
     config.fonts.regular, 
     isTop3 ? config.fonts.top3Size : config.fonts.otherSize
-  );
-  const textColor = new Color(
-    isTop3 ? config.colors.top3Text : config.colors.otherText
   );
   
   positionText.font = font;
   constructorText.font = font;
   pointsText.font = font;
-  positionText.textColor = textColor;
-  constructorText.textColor = textColor;
-  pointsText.textColor = textColor;
 
   return rowStack;
 }
