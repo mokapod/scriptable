@@ -64,7 +64,7 @@ const config = {
   // Gradient Settings
   gradient: {
     locations: [0.001, 0.04, 1],
-    opacities: [0.08, 1, 0.03],
+    opacities: [0.08, 1, 0.3],
     startPoint: { x: 0, y: 0.5 },
     endPoint: { x: 1, y: 0.5 }
   }
