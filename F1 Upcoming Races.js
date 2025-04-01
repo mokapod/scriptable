@@ -31,26 +31,28 @@ const config = {
     background: {
         widget: {
             gradient: {
-                locations: [0, 0.6, 1],
+                locations: [0, 0.3, 1],
                 colors: [
                     Color.clear(),
                     new Color("#808080", 0.2),
                     Color.clear()
-                ]
+                ],
+                startPoint: new Point(0, 0.5),
+                endPoint: new Point(1, 0.5)
             }
         },
         date: {
             gradient: {
-                locations: [0, 0.02, 1],
+                locations: [0, 0.02, 0.95],
                 colors: [
-                    new Color("#E8002D", 0.08),   // F1 red with transparency
-                    new Color("#E8002D"),        // Solid F1 red
-                    new Color("#E8002D", 0.03)   // F1 red with transparency
+                    new Color("#E8002D", 0.08),
+                    new Color("#E8002D"),
+                    new Color("#E8002D", 0.03)
                 ],
                 startPoint: new Point(0, 0.5),
                 endPoint: new Point(1, 0.5)
             },
-            cornerRadius: 4
+            cornerRadius: 2
         }
     },
     text: {
@@ -149,13 +151,15 @@ function createErrorWidget(error) {
   return widget;
 }
 
-function createBackgroundGradient() {
+function createBackgroundGradient(gradientConfig = config.colors.background.widget.gradient) {
   let gradient = new LinearGradient();
-  gradient.locations = config.colors.background.widget.gradient.locations;
-  gradient.colors = config.colors.background.widget.gradient.colors.map(color => {
+  gradient.locations = gradientConfig.locations;
+  gradient.colors = gradientConfig.colors.map(color => {
     if (color === Color.clear()) return Color.clear();
     return new Color(color.hex, color.alpha);
   });
+  gradient.startPoint = gradientConfig.startPoint;
+  gradient.endPoint = gradientConfig.endPoint;
   return gradient;
 }
 
@@ -201,16 +205,8 @@ function createRaceEntry(widget, race) {
   dateStack.layoutHorizontally();
   dateStack.setPadding(...config.padding.dateTime);
   
-  // Create gradient background
-  const dateGradient = new LinearGradient();
-  dateGradient.locations = config.colors.background.date.gradient.locations;
-  dateGradient.colors = config.colors.background.date.gradient.colors.map(color => {
-    if (color === Color.clear()) return Color.clear();
-    return new Color(color.hex, color.alpha);
-  });
-  dateGradient.startPoint = config.colors.background.date.gradient.startPoint;
-  dateGradient.endPoint = config.colors.background.date.gradient.endPoint;
-  dateStack.backgroundGradient = dateGradient;
+  // Use shared gradient function with date gradient config
+  dateStack.backgroundGradient = createBackgroundGradient(config.colors.background.date.gradient);
   dateStack.cornerRadius = config.colors.background.date.cornerRadius;
   
   // Add date text
@@ -251,7 +247,7 @@ try {
     noRaceText.textColor = new Color(config.colors.text.raceName);
   }
 } catch (error) {
-  Script.setWidget(createErrorWidget());
+  Script.setWidget(createErrorWidget(error));
 }
 
 Script.setWidget(widget);
